@@ -1,0 +1,105 @@
+aid: ukg-pro
+name: UKG Pro
+description: >-
+  UKG Pro (formerly UltiPro) is an enterprise human capital management (HCM)
+  suite from UKG that delivers payroll, core HR, benefits administration,
+  talent management, recruiting, onboarding, performance, learning, and people
+  analytics for mid-to-large organizations. The platform combines the legacy
+  UltiPro HR/payroll product with UKG's workforce management capabilities and
+  is positioned for HR teams that need a unified system of record. The UKG Pro
+  REST API exposes HCM resources (people, benefits, payroll, talent) via
+  tenant-specific endpoints authenticated with OAuth 2.0 Bearer tokens.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Human Capital Management
+  - HCM
+  - HR
+  - Payroll
+  - Benefits Administration
+  - Talent Management
+  - Workforce Management
+  - HRIS
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/ukg-pro/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: ukg-pro:hcm-api
+    name: UKG Pro HCM API
+    description: >-
+      REST API for the UKG Pro HCM suite covering people, benefits, payroll,
+      talent, recruiting, onboarding, and HR data. Hosted on tenant-specific
+      hostnames with OAuth 2.0 Bearer token authentication obtained via the
+      /api/authentication/access_token endpoint.
+    humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+    baseURL: https://<<tenantHostName>>/api
+    tags:
+      - HCM
+      - HR
+      - Payroll
+      - Benefits
+      - Talent
+      - Recruiting
+    properties:
+      - type: Documentation
+        url: https://developer.ukg.com/hcm
+      - type: API Reference
+        url: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+      - type: Authentication
+        url: https://developer.ukg.com/general/docs/authentication-and-authorization
+  - aid: ukg-pro:wfm-api
+    name: UKG Pro WFM API
+    description: >-
+      REST API for the UKG Pro Workforce Management product (Dimensions),
+      covering punches, shifts, scheduling, accruals, timekeeping, attendance,
+      and labor data.
+    humanURL: https://developer.ukg.com/wfm
+    baseURL: https://<<tenantHostName>>/api
+    tags:
+      - Workforce Management
+      - Scheduling
+      - Time and Attendance
+      - Accruals
+    properties:
+      - type: Documentation
+        url: https://developer.ukg.com/wfm
+      - type: API Reference
+        url: https://developer.ukg.com/wfm/reference
+  - aid: ukg-pro:people-fabric-api
+    name: UKG People Fabric API
+    description: >-
+      Unified data fabric API that exposes consolidated person, employment,
+      and workforce data across UKG Pro and connected systems for analytics
+      and integration use cases.
+    humanURL: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
+    baseURL: https://<<tenantHostName>>/api
+    tags:
+      - People Fabric
+      - Data Fabric
+      - Analytics
+    properties:
+      - type: Documentation
+        url: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
+
+common:
+  - type: Website
+    url: https://www.ukg.com/solutions/ukg-pro
+  - type: Developer Portal
+    url: https://developer.ukg.com
+  - type: Documentation
+    url: https://developer.ukg.com
+  - type: Authentication
+    url: https://developer.ukg.com/general/docs/authentication-and-authorization
+  - type: Pricing
+    url: https://www.ukg.com/solutions/ukg-pro
+  - type: Support
+    url: https://www.ukg.com/support
+  - type: Community
+    url: https://community.ukg.com/
+  - type: Parent Company
+    url: https://www.ukg.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
