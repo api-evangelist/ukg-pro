@@ -45,7 +45,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.ukg.com/hcm
-      - type: API Reference
+      - type: APIReference
         url: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
       - type: Authentication
         url: https://developer.ukg.com/general/docs/authentication-and-authorization
@@ -65,7 +65,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.ukg.com/wfm
-      - type: API Reference
+      - type: APIReference
         url: https://developer.ukg.com/wfm/reference
   - aid: ukg-pro:people-fabric-api
     name: UKG People Fabric API
