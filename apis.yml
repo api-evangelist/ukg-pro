@@ -84,6 +84,10 @@ apis:
         url: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
 
 common:
+  - type: GitHubOrganization
+    url: https://github.com/ultimatesoftware
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/ukg
   - type: Website
     url: https://www.ukg.com/solutions/ukg-pro
   - type: Developer Portal
