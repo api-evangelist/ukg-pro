@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UKG Pro HCM API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "People",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/personnel/v1/employees",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of employees for the tenant."
+        },
+        {
+          "info": {
+            "name": "Retrieve an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/personnel/v1/employees/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an employee"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Employment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List employee changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/personnel/v1/employee-changes",
+            "params": [
+              {
+                "name": "modifiedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modifiedBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a feed of employment change events within a date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pay statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/pay/v1/pay-statements",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "List pay statements"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List benefits elections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/benefits/v1/elections",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List benefits elections"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recruiting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recruiting candidates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/recruiting/v1/candidates",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Recruiting endpoints require an Authorization Token (bearer) rather\nthan Basic Auth.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
