@@ -10,7 +10,7 @@ description: >-
   REST API exposes HCM resources (people, benefits, payroll, talent) via
   tenant-specific endpoints authenticated with OAuth 2.0 Bearer tokens.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Human Capital Management
   - HCM
