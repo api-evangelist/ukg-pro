@@ -90,7 +90,7 @@ common:
     url: https://www.linkedin.com/company/ukg
   - type: Website
     url: https://www.ukg.com/solutions/ukg-pro
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.ukg.com
   - type: Documentation
     url: https://developer.ukg.com
