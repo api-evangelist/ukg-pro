@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ukg-pro-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using a UKG Pro web service account.
+  sources:
+  - openapi/ukg-pro-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bearer Authorization Token issued for onboarding and recruiting APIs.
+  sources:
+  - openapi/ukg-pro-openapi.yml

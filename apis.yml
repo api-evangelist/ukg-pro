@@ -84,6 +84,10 @@ apis:
         url: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
 
 common:
+  - type: DomainSecurity
+    url: security/ukg-pro-domain-security.yml
+  - type: Authentication
+    url: authentication/ukg-pro-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/ultimatesoftware
   - type: LinkedIn
