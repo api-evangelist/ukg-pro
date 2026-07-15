@@ -84,6 +84,8 @@ apis:
         url: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/ukg-pro-agentic-access.yml
   - type: DomainSecurity
     url: security/ukg-pro-domain-security.yml
   - type: Authentication
