@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: UKG Pro HCM Benefits API
+  version: 1.0.0
+  summary: REST interface for the UKG Pro Human Capital Management suite.
+  description: 'The UKG Pro HCM API exposes Human Capital Management resources (people,
+
+    employment, benefits, payroll, talent, recruiting, onboarding) for the
+
+    UKG Pro platform. The API is tenant-hosted: each customer has a unique
+
+    base hostname. Core REST resources are authenticated with HTTP Basic
+
+    Authentication using a web service account; onboarding and recruiting
+
+    resources require a bearer Authorization Token issued by UKG.
+
+
+    This specification documents the high-level surface confirmed from the
+
+    public developer portal. Detailed schemas for tenant-specific resources
+
+    require access to the authenticated developer portal.
+
+    '
+  contact:
+    name: UKG Developer Portal
+    url: https://developer.ukg.com/hcm
+  license:
+    name: Proprietary
+    url: https://www.ukg.com/legal
+servers:
+- url: https://{tenantHostName}/api
+  description: Tenant-specific UKG Pro HCM API host
+  variables:
+    tenantHostName:
+      default: configuration.ultipro.com
+      description: Customer-specific UKG Pro hostname assigned at provisioning
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Benefits
+  description: Benefits enrollment and election data
+paths:
+  /benefits/v1/elections:
+    get:
+      tags:
+      - Benefits
+      summary: List benefits elections
+      operationId: listBenefitsElections
+      parameters:
+      - $ref: '#/components/parameters/EmployeeIdQuery'
+      responses:
+        '200':
+          description: Benefits election collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BenefitsElection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    BenefitsElection:
+      type: object
+      properties:
+        electionId:
+          type: string
+        employeeId:
+          type: string
+        planName:
+          type: string
+        coverageTier:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    EmployeeIdQuery:
+      name: employeeId
+      in: query
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using a UKG Pro web service account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer Authorization Token issued for onboarding and recruiting APIs.

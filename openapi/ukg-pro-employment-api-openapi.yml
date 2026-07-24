@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: UKG Pro HCM Benefits Employment API
+  version: 1.0.0
+  summary: REST interface for the UKG Pro Human Capital Management suite.
+  description: 'The UKG Pro HCM API exposes Human Capital Management resources (people,
+
+    employment, benefits, payroll, talent, recruiting, onboarding) for the
+
+    UKG Pro platform. The API is tenant-hosted: each customer has a unique
+
+    base hostname. Core REST resources are authenticated with HTTP Basic
+
+    Authentication using a web service account; onboarding and recruiting
+
+    resources require a bearer Authorization Token issued by UKG.
+
+
+    This specification documents the high-level surface confirmed from the
+
+    public developer portal. Detailed schemas for tenant-specific resources
+
+    require access to the authenticated developer portal.
+
+    '
+  contact:
+    name: UKG Developer Portal
+    url: https://developer.ukg.com/hcm
+  license:
+    name: Proprietary
+    url: https://www.ukg.com/legal
+servers:
+- url: https://{tenantHostName}/api
+  description: Tenant-specific UKG Pro HCM API host
+  variables:
+    tenantHostName:
+      default: configuration.ultipro.com
+      description: Customer-specific UKG Pro hostname assigned at provisioning
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Employment
+  description: Employment history and changes
+paths:
+  /personnel/v1/employee-changes:
+    get:
+      tags:
+      - Employment
+      summary: List employee changes
+      description: Retrieve a feed of employment change events within a date range.
+      operationId: listEmployeeChanges
+      parameters:
+      - name: modifiedAfter
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: modifiedBefore
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Employee change collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EmployeeChange'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    EmployeeChange:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        changeType:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        modifiedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using a UKG Pro web service account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer Authorization Token issued for onboarding and recruiting APIs.

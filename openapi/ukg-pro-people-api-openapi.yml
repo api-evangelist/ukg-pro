@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: UKG Pro HCM Benefits People API
+  version: 1.0.0
+  summary: REST interface for the UKG Pro Human Capital Management suite.
+  description: 'The UKG Pro HCM API exposes Human Capital Management resources (people,
+
+    employment, benefits, payroll, talent, recruiting, onboarding) for the
+
+    UKG Pro platform. The API is tenant-hosted: each customer has a unique
+
+    base hostname. Core REST resources are authenticated with HTTP Basic
+
+    Authentication using a web service account; onboarding and recruiting
+
+    resources require a bearer Authorization Token issued by UKG.
+
+
+    This specification documents the high-level surface confirmed from the
+
+    public developer portal. Detailed schemas for tenant-specific resources
+
+    require access to the authenticated developer portal.
+
+    '
+  contact:
+    name: UKG Developer Portal
+    url: https://developer.ukg.com/hcm
+  license:
+    name: Proprietary
+    url: https://www.ukg.com/legal
+servers:
+- url: https://{tenantHostName}/api
+  description: Tenant-specific UKG Pro HCM API host
+  variables:
+    tenantHostName:
+      default: configuration.ultipro.com
+      description: Customer-specific UKG Pro hostname assigned at provisioning
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: People
+  description: Personnel and employee records
+paths:
+  /personnel/v1/employees:
+    get:
+      tags:
+      - People
+      summary: List employees
+      description: Retrieve a paginated list of employees for the tenant.
+      operationId: listEmployees
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: Employee collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /personnel/v1/employees/{employeeId}:
+    get:
+      tags:
+      - People
+      summary: Retrieve an employee
+      operationId: getEmployee
+      parameters:
+      - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: Employee record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PerPage:
+      name: per_page
+      in: query
+      description: Items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Employee:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        emailAddress:
+          type: string
+          format: email
+        hireDate:
+          type: string
+          format: date
+        status:
+          type: string
+    EmployeeCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        page:
+          type: integer
+        per_page:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using a UKG Pro web service account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer Authorization Token issued for onboarding and recruiting APIs.
