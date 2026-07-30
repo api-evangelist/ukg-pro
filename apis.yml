@@ -10,7 +10,19 @@ description: >-
   REST API exposes HCM resources (people, benefits, payroll, talent) via
   tenant-specific endpoints authenticated with OAuth 2.0 Bearer tokens.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ukg-pro.png
 tags:
   - Human Capital Management
   - HCM
@@ -26,63 +38,109 @@ created: '2026-05-11'
 modified: '2026-05-11'
 specificationVersion: '0.19'
 apis:
-  - aid: ukg-pro:hcm-api
-    name: UKG Pro HCM API
-    description: >-
-      REST API for the UKG Pro HCM suite covering people, benefits, payroll,
-      talent, recruiting, onboarding, and HR data. Hosted on tenant-specific
-      hostnames with OAuth 2.0 Bearer token authentication obtained via the
-      /api/authentication/access_token endpoint.
-    humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
-    baseURL: https://<<tenantHostName>>/api
-    tags:
-      - HCM
-      - HR
-      - Payroll
-      - Benefits
-      - Talent
-      - Recruiting
-    properties:
-      - type: Documentation
-        url: https://developer.ukg.com/hcm
-      - type: APIReference
-        url: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
-      - type: Authentication
-        url: https://developer.ukg.com/general/docs/authentication-and-authorization
-  - aid: ukg-pro:wfm-api
-    name: UKG Pro WFM API
-    description: >-
-      REST API for the UKG Pro Workforce Management product (Dimensions),
-      covering punches, shifts, scheduling, accruals, timekeeping, attendance,
-      and labor data.
-    humanURL: https://developer.ukg.com/wfm
-    baseURL: https://<<tenantHostName>>/api
-    tags:
-      - Workforce Management
-      - Scheduling
-      - Time and Attendance
-      - Accruals
-    properties:
-      - type: Documentation
-        url: https://developer.ukg.com/wfm
-      - type: APIReference
-        url: https://developer.ukg.com/wfm/reference
-  - aid: ukg-pro:people-fabric-api
-    name: UKG People Fabric API
-    description: >-
-      Unified data fabric API that exposes consolidated person, employment,
-      and workforce data across UKG Pro and connected systems for analytics
-      and integration use cases.
-    humanURL: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
-    baseURL: https://<<tenantHostName>>/api
-    tags:
-      - People Fabric
-      - Data Fabric
-      - Analytics
-    properties:
-      - type: Documentation
-        url: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
-
+- aid: ukg-pro:hcm-api
+  name: UKG Pro HCM API
+  description: >-
+    REST API for the UKG Pro HCM suite covering people, benefits, payroll, talent, recruiting, onboarding,
+    and HR data. Hosted on tenant-specific hostnames with OAuth 2.0 Bearer token authentication obtained
+    via the /api/authentication/access_token endpoint.
+  humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - HCM
+  - HR
+  - Payroll
+  - Benefits
+  - Talent
+  - Recruiting
+  properties:
+  - type: Documentation
+    url: https://developer.ukg.com/hcm
+  - type: APIReference
+    url: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  - type: Authentication
+    url: https://developer.ukg.com/general/docs/authentication-and-authorization
+- aid: ukg-pro:wfm-api
+  name: UKG Pro WFM API
+  description: >-
+    REST API for the UKG Pro Workforce Management product (Dimensions), covering punches, shifts, scheduling,
+    accruals, timekeeping, attendance, and labor data.
+  humanURL: https://developer.ukg.com/wfm
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - Workforce Management
+  - Scheduling
+  - Time and Attendance
+  - Accruals
+  properties:
+  - type: Documentation
+    url: https://developer.ukg.com/wfm
+  - type: APIReference
+    url: https://developer.ukg.com/wfm/reference
+- aid: ukg-pro:people-fabric-api
+  name: UKG People Fabric API
+  description: >-
+    Unified data fabric API that exposes consolidated person, employment, and workforce data across UKG
+    Pro and connected systems for analytics and integration use cases.
+  humanURL: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - People Fabric
+  - Data Fabric
+  - Analytics
+  properties:
+  - type: Documentation
+    url: https://developer.ukg.com/peoplefabric/reference/welcome-to-the-people-fabric-api
+- aid: ukg-pro:ukg-pro-benefits-api
+  name: UKG Pro Benefits API
+  description: Benefits enrollment and election data
+  humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - Benefits
+  properties:
+  - type: OpenAPI
+    url: openapi/ukg-pro-benefits-api-openapi.yml
+- aid: ukg-pro:ukg-pro-employment-api
+  name: UKG Pro Employment API
+  description: Employment history and changes
+  humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - Employment
+  properties:
+  - type: OpenAPI
+    url: openapi/ukg-pro-employment-api-openapi.yml
+- aid: ukg-pro:ukg-pro-pay-api
+  name: UKG Pro Pay API
+  description: Pay statements, earnings, and payroll data
+  humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - Pay
+  properties:
+  - type: OpenAPI
+    url: openapi/ukg-pro-pay-api-openapi.yml
+- aid: ukg-pro:ukg-pro-people-api
+  name: UKG Pro People API
+  description: Personnel and employee records
+  humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/ukg-pro-people-api-openapi.yml
+- aid: ukg-pro:ukg-pro-recruiting-api
+  name: UKG Pro Recruiting API
+  description: Recruiting and applicant tracking
+  humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
+  baseURL: https://<<tenantHostName>>/api
+  tags:
+  - Recruiting
+  properties:
+  - type: OpenAPI
+    url: openapi/ukg-pro-recruiting-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/ukg-pro-agentic-access.yml
