@@ -1,0 +1,327 @@
+openapi: 3.1.0
+info:
+  title: UKG Pro HCM API
+  version: 1.0.0
+  summary: REST interface for the UKG Pro Human Capital Management suite.
+  description: |
+    The UKG Pro HCM API exposes Human Capital Management resources (people,
+    employment, benefits, payroll, talent, recruiting, onboarding) for the
+    UKG Pro platform. The API is tenant-hosted: each customer has a unique
+    base hostname. Core REST resources are authenticated with HTTP Basic
+    Authentication using a web service account; onboarding and recruiting
+    resources require a bearer Authorization Token issued by UKG.
+
+    This specification documents the high-level surface confirmed from the
+    public developer portal. Detailed schemas for tenant-specific resources
+    require access to the authenticated developer portal.
+  contact:
+    name: UKG Developer Portal
+    url: https://developer.ukg.com/hcm
+  license:
+    name: Proprietary
+    url: https://www.ukg.com/legal
+servers:
+  - url: https://{tenantHostName}/api
+    description: Tenant-specific UKG Pro HCM API host
+    variables:
+      tenantHostName:
+        default: configuration.ultipro.com
+        description: Customer-specific UKG Pro hostname assigned at provisioning
+security:
+  - basicAuth: []
+  - bearerAuth: []
+tags:
+  - name: People
+    description: Personnel and employee records
+  - name: Employment
+    description: Employment history and changes
+  - name: Pay
+    description: Pay statements, earnings, and payroll data
+  - name: Benefits
+    description: Benefits enrollment and election data
+  - name: Talent
+    description: Talent, performance, and learning data
+  - name: Recruiting
+    description: Recruiting and applicant tracking
+paths:
+  /personnel/v1/employees:
+    get:
+      tags: [People]
+      summary: List employees
+      description: Retrieve a paginated list of employees for the tenant.
+      operationId: listEmployees
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: Employee collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /personnel/v1/employees/{employeeId}:
+    get:
+      tags: [People]
+      summary: Retrieve an employee
+      operationId: getEmployee
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: Employee record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /personnel/v1/employee-changes:
+    get:
+      tags: [Employment]
+      summary: List employee changes
+      description: Retrieve a feed of employment change events within a date range.
+      operationId: listEmployeeChanges
+      parameters:
+        - name: modifiedAfter
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: modifiedBefore
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Employee change collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EmployeeChange'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /pay/v1/pay-statements:
+    get:
+      tags: [Pay]
+      summary: List pay statements
+      operationId: listPayStatements
+      parameters:
+        - $ref: '#/components/parameters/EmployeeIdQuery'
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: Pay statement collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PayStatement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /benefits/v1/elections:
+    get:
+      tags: [Benefits]
+      summary: List benefits elections
+      operationId: listBenefitsElections
+      parameters:
+        - $ref: '#/components/parameters/EmployeeIdQuery'
+      responses:
+        '200':
+          description: Benefits election collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BenefitsElection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /recruiting/v1/candidates:
+    get:
+      tags: [Recruiting]
+      summary: List recruiting candidates
+      description: |
+        Recruiting endpoints require an Authorization Token (bearer) rather
+        than Basic Auth.
+      operationId: listCandidates
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Candidate collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Candidate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using a UKG Pro web service account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer Authorization Token issued for onboarding and recruiting APIs.
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PerPage:
+      name: per_page
+      in: query
+      description: Items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      schema:
+        type: string
+    EmployeeIdQuery:
+      name: employeeId
+      in: query
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Employee:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        emailAddress:
+          type: string
+          format: email
+        hireDate:
+          type: string
+          format: date
+        status:
+          type: string
+    EmployeeCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        page:
+          type: integer
+        per_page:
+          type: integer
+    EmployeeChange:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        changeType:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        modifiedAt:
+          type: string
+          format: date-time
+    PayStatement:
+      type: object
+      properties:
+        statementId:
+          type: string
+        employeeId:
+          type: string
+        payPeriodStart:
+          type: string
+          format: date
+        payPeriodEnd:
+          type: string
+          format: date
+        grossPay:
+          type: number
+        netPay:
+          type: number
+    BenefitsElection:
+      type: object
+      properties:
+        electionId:
+          type: string
+        employeeId:
+          type: string
+        planName:
+          type: string
+        coverageTier:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+    Candidate:
+      type: object
+      properties:
+        candidateId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        emailAddress:
+          type: string
+          format: email
+        requisitionId:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

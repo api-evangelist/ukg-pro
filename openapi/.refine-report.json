@@ -1,0 +1,22 @@
+{
+  "provider": "ukg-pro",
+  "sources": [
+    "ukg-pro-benefits-api-openapi.yml",
+    "ukg-pro-employment-api-openapi.yml",
+    "ukg-pro-pay-api-openapi.yml",
+    "ukg-pro-people-api-openapi.yml",
+    "ukg-pro-recruiting-api-openapi.yml"
+  ],
+  "outputs": [
+    "ukg-pro-benefits-api-openapi.yml",
+    "ukg-pro-employment-api-openapi.yml",
+    "ukg-pro-pay-api-openapi.yml",
+    "ukg-pro-people-api-openapi.yml",
+    "ukg-pro-recruiting-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
