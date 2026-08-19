@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "b35a53b0-3904-4dfd-8942-283e5b3af9a9",
+      "name": "Benefits",
+      "description": {
+        "content": "Benefits enrollment and election data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca984d6a-2f9f-4686-86f9-422acb523abc",
+          "name": "List benefits elections",
+          "request": {
+            "name": "List benefits elections",
+            "description": {},
+            "url": {
+              "path": [
+                "benefits",
+                "v1",
+                "elections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employeeId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                  "type": "any",
+                  "value": "{{tenantHostName}}",
+                  "key": "tenantHostName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b82ec1fd-5008-4228-8143-4767c8df8917",
+              "name": "Benefits election collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benefits",
+                    "v1",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"electionId\": \"string\",\n      \"employeeId\": \"string\",\n      \"planName\": \"string\",\n      \"coverageTier\": \"string\",\n      \"effectiveDate\": \"1983-07-03\"\n    },\n    {\n      \"electionId\": \"string\",\n      \"employeeId\": \"string\",\n      \"planName\": \"string\",\n      \"coverageTier\": \"string\",\n      \"effectiveDate\": \"2018-08-26\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2369dd4-663a-4d91-a290-94c0dc10ff26",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benefits",
+                    "v1",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Customer-specific UKG Pro hostname assigned at provisioning",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "configuration.ultipro.com",
+      "key": "tenantHostName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantHostName}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1beb136e-70d2-46b6-a3da-b61e6349d14a",
+    "name": "UKG Pro HCM Benefits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The UKG Pro HCM API exposes Human Capital Management resources (people,\nemployment, benefits, payroll, talent, recruiting, onboarding) for the\nUKG Pro platform. The API is tenant-hosted: each customer has a unique\nbase hostname. Core REST resources are authenticated with HTTP Basic\nAuthentication using a web service account; onboarding and recruiting\nresources require a bearer Authorization Token issued by UKG.\n\nThis specification documents the high-level surface confirmed from the\npublic developer portal. Detailed schemas for tenant-specific resources\nrequire access to the authenticated developer portal.\n\n\nContact Support:\n Name: UKG Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

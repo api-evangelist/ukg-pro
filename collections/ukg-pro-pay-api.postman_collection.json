@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "4ca60dcd-a61d-4e49-8d94-126ffcee239c",
+      "name": "Pay",
+      "description": {
+        "content": "Pay statements, earnings, and payroll data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fc765b8-d57e-4d1e-ba65-4b75a2baadd1",
+          "name": "List pay statements",
+          "request": {
+            "name": "List pay statements",
+            "description": {},
+            "url": {
+              "path": [
+                "pay",
+                "v1",
+                "pay-statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employeeId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                  "type": "any",
+                  "value": "{{tenantHostName}}",
+                  "key": "tenantHostName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40935826-894f-43ae-b3b7-0f18792bbced",
+              "name": "Pay statement collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pay",
+                    "v1",
+                    "pay-statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"statementId\": \"string\",\n      \"employeeId\": \"string\",\n      \"payPeriodStart\": \"2011-12-15\",\n      \"payPeriodEnd\": \"2008-02-08\",\n      \"grossPay\": 2490.373962874739,\n      \"netPay\": 9647.433929423727\n    },\n    {\n      \"statementId\": \"string\",\n      \"employeeId\": \"string\",\n      \"payPeriodStart\": \"1982-08-14\",\n      \"payPeriodEnd\": \"1955-05-28\",\n      \"grossPay\": 8226.410649007195,\n      \"netPay\": 4741.673262954714\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b870c99-c21d-4e9a-8968-7d53d6c7289e",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pay",
+                    "v1",
+                    "pay-statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Customer-specific UKG Pro hostname assigned at provisioning",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "configuration.ultipro.com",
+      "key": "tenantHostName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantHostName}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "64399e55-43fc-4543-ae53-1af3dd10cb6b",
+    "name": "UKG Pro HCM Benefits Pay API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The UKG Pro HCM API exposes Human Capital Management resources (people,\nemployment, benefits, payroll, talent, recruiting, onboarding) for the\nUKG Pro platform. The API is tenant-hosted: each customer has a unique\nbase hostname. Core REST resources are authenticated with HTTP Basic\nAuthentication using a web service account; onboarding and recruiting\nresources require a bearer Authorization Token issued by UKG.\n\nThis specification documents the high-level surface confirmed from the\npublic developer portal. Detailed schemas for tenant-specific resources\nrequire access to the authenticated developer portal.\n\n\nContact Support:\n Name: UKG Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

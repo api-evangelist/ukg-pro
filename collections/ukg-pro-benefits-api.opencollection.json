@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UKG Pro HCM Benefits API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List benefits elections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/benefits/v1/elections",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List benefits elections"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

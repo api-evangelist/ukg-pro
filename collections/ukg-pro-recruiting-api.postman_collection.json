@@ -1,0 +1,210 @@
+{
+  "item": [
+    {
+      "id": "ee4331ce-67b0-4c49-a105-df6713471909",
+      "name": "Recruiting",
+      "description": {
+        "content": "Recruiting and applicant tracking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3387d9a0-5d61-4a0d-be9f-c132bb3f37a5",
+          "name": "List recruiting candidates",
+          "request": {
+            "name": "List recruiting candidates",
+            "description": {
+              "content": "Recruiting endpoints require an Authorization Token (bearer) rather\nthan Basic Auth.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recruiting",
+                "v1",
+                "candidates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                  "type": "any",
+                  "value": "{{tenantHostName}}",
+                  "key": "tenantHostName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "da99e241-cfcd-4e4e-9762-0bac7321f03f",
+              "name": "Candidate collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recruiting",
+                    "v1",
+                    "candidates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"candidateId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emailAddress\": \"SM3@iddhCwjzGsW.ar\",\n      \"requisitionId\": \"string\"\n    },\n    {\n      \"candidateId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emailAddress\": \"udsi@JxHirdm.qmvq\",\n      \"requisitionId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01710066-4205-4375-a48a-177da262c708",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recruiting",
+                    "v1",
+                    "candidates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Customer-specific UKG Pro hostname assigned at provisioning",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "configuration.ultipro.com",
+      "key": "tenantHostName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantHostName}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "953f0a41-f49c-479d-9e82-9f17ab5c629e",
+    "name": "UKG Pro HCM Benefits Recruiting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The UKG Pro HCM API exposes Human Capital Management resources (people,\nemployment, benefits, payroll, talent, recruiting, onboarding) for the\nUKG Pro platform. The API is tenant-hosted: each customer has a unique\nbase hostname. Core REST resources are authenticated with HTTP Basic\nAuthentication using a web service account; onboarding and recruiting\nresources require a bearer Authorization Token issued by UKG.\n\nThis specification documents the high-level surface confirmed from the\npublic developer portal. Detailed schemas for tenant-specific resources\nrequire access to the authenticated developer portal.\n\n\nContact Support:\n Name: UKG Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "item": [
+    {
+      "id": "6baa0359-177d-47dd-9ac8-f1992b7caf7a",
+      "name": "Employment",
+      "description": {
+        "content": "Employment history and changes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf6ea201-12ba-4fbb-a7f6-bd6fb4068b32",
+          "name": "List employee changes",
+          "request": {
+            "name": "List employee changes",
+            "description": {
+              "content": "Retrieve a feed of employment change events within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personnel",
+                "v1",
+                "employee-changes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "modifiedAfter",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "modifiedBefore",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                  "type": "any",
+                  "value": "{{tenantHostName}}",
+                  "key": "tenantHostName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0dd0ac3f-8152-42b3-9395-e42ac002c54e",
+              "name": "Employee change collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personnel",
+                    "v1",
+                    "employee-changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modifiedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modifiedBefore",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"employeeId\": \"string\",\n      \"changeType\": \"string\",\n      \"effectiveDate\": \"1962-06-06\",\n      \"modifiedAt\": \"2026-04-20T22:15:09.527Z\"\n    },\n    {\n      \"employeeId\": \"string\",\n      \"changeType\": \"string\",\n      \"effectiveDate\": \"2004-10-15\",\n      \"modifiedAt\": \"1982-08-09T08:39:19.931Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db94e4d0-4b36-4da6-b503-46f9d63b6115",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personnel",
+                    "v1",
+                    "employee-changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modifiedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modifiedBefore",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Customer-specific UKG Pro hostname assigned at provisioning",
+                      "type": "any",
+                      "value": "{{tenantHostName}}",
+                      "key": "tenantHostName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Customer-specific UKG Pro hostname assigned at provisioning",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "configuration.ultipro.com",
+      "key": "tenantHostName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantHostName}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a5e58e5-456b-48bd-ba1d-a7694382a860",
+    "name": "UKG Pro HCM Benefits Employment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The UKG Pro HCM API exposes Human Capital Management resources (people,\nemployment, benefits, payroll, talent, recruiting, onboarding) for the\nUKG Pro platform. The API is tenant-hosted: each customer has a unique\nbase hostname. Core REST resources are authenticated with HTTP Basic\nAuthentication using a web service account; onboarding and recruiting\nresources require a bearer Authorization Token issued by UKG.\n\nThis specification documents the high-level surface confirmed from the\npublic developer portal. Detailed schemas for tenant-specific resources\nrequire access to the authenticated developer portal.\n\n\nContact Support:\n Name: UKG Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

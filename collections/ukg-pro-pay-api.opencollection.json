@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UKG Pro HCM Benefits Pay API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pay statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/pay/v1/pay-statements",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "List pay statements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

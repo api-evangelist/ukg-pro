@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UKG Pro HCM Benefits Recruiting API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recruiting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recruiting candidates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/recruiting/v1/candidates",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Recruiting endpoints require an Authorization Token (bearer) rather\nthan Basic Auth.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

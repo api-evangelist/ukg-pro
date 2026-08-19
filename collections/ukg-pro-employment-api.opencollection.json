@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UKG Pro HCM Benefits Employment API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List employee changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantHostName}/api/personnel/v1/employee-changes",
+            "params": [
+              {
+                "name": "modifiedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modifiedBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a feed of employment change events within a date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
