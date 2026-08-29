@@ -10,6 +10,18 @@ description: >-
   REST API exposes HCM resources (people, benefits, payroll, talent) via
   tenant-specific endpoints authenticated with OAuth 2.0 Bearer tokens.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
