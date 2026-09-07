@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "ukg-pro-benefits-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ukg-pro-employment-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ukg-pro-pay-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ukg-pro-people-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ukg-pro-recruiting-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
