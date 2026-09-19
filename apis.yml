@@ -38,7 +38,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ukg-pro.png
 tags:
   - HCM
-  - HR
+  - Human Resources
   - Payroll
   - Benefits Administration
   - Talent Management
@@ -68,6 +68,13 @@ apis:
   humanURL: https://developer.ukg.com/hcm/reference/welcome-to-the-ukg-pro-api
   baseURL: https://<<tenantHostName>>/api
   tags:
+  - HCM
+  - Human Resources
+  - Payroll
+  - Benefits
+  - Talent
+  - Recruiting
+  tags_raw:
   - HCM
   - HR
   - Payroll
