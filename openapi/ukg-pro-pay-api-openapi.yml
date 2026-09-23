@@ -1,28 +1,13 @@
 openapi: 3.2.0
 info:
-  title: UKG Pro HCM Benefits Pay API
+  title: UKG Pro HCM Pay API
   version: 1.0.0
   summary: REST interface for the UKG Pro Human Capital Management suite.
   description: 'The UKG Pro HCM API exposes Human Capital Management resources (people,
 
     employment, benefits, payroll, talent, recruiting, onboarding) for the
 
-    UKG Pro platform. The API is tenant-hosted: each customer has a unique
-
-    base hostname. Core REST resources are authenticated with HTTP Basic
-
-    Authentication using a web service account; onboarding and recruiting
-
-    resources require a bearer Authorization Token issued by UKG.
-
-
-    This specification documents the high-level surface confirmed from the
-
-    public developer portal. Detailed schemas for tenant-specific resources
-
-    require access to the authenticated developer portal.
-
-    '
+    UKG Pro platform.'
   contact:
     name: UKG Developer Portal
     url: https://developer.ukg.com/hcm
@@ -68,6 +53,11 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
+    EmployeeIdQuery:
+      name: employeeId
+      in: query
+      schema:
+        type: string
     Page:
       name: page
       in: query
@@ -76,19 +66,14 @@ components:
         type: integer
         minimum: 1
         default: 1
-    EmployeeIdQuery:
-      name: employeeId
-      in: query
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     PayStatement:
       type: object
       properties:
@@ -106,13 +91,13 @@ components:
           type: number
         netPay:
           type: number
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

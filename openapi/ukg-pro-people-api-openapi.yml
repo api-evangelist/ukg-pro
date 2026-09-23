@@ -1,28 +1,13 @@
 openapi: 3.2.0
 info:
-  title: UKG Pro HCM Benefits People API
+  title: UKG Pro HCM People API
   version: 1.0.0
   summary: REST interface for the UKG Pro Human Capital Management suite.
   description: 'The UKG Pro HCM API exposes Human Capital Management resources (people,
 
     employment, benefits, payroll, talent, recruiting, onboarding) for the
 
-    UKG Pro platform. The API is tenant-hosted: each customer has a unique
-
-    base hostname. Core REST resources are authenticated with HTTP Basic
-
-    Authentication using a web service account; onboarding and recruiting
-
-    resources require a bearer Authorization Token issued by UKG.
-
-
-    This specification documents the high-level surface confirmed from the
-
-    public developer portal. Detailed schemas for tenant-specific resources
-
-    require access to the authenticated developer portal.
-
-    '
+    UKG Pro platform.'
   contact:
     name: UKG Developer Portal
     url: https://developer.ukg.com/hcm
@@ -82,55 +67,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    Page:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PerPage:
-      name: per_page
-      in: query
-      description: Items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 50
-    EmployeeId:
-      name: employeeId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    EmployeeCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employee'
-        page:
-          type: integer
-        per_page:
-          type: integer
     Employee:
       type: object
       properties:
@@ -148,6 +85,17 @@ components:
           format: date
         status:
           type: string
+    EmployeeCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        page:
+          type: integer
+        per_page:
+          type: integer
     Error:
       type: object
       properties:
@@ -155,6 +103,43 @@ components:
           type: string
         message:
           type: string
+  parameters:
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      description: Items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    Page:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

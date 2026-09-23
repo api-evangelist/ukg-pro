@@ -1,28 +1,13 @@
 openapi: 3.2.0
 info:
-  title: UKG Pro HCM Benefits Recruiting API
+  title: UKG Pro HCM Recruiting API
   version: 1.0.0
   summary: REST interface for the UKG Pro Human Capital Management suite.
   description: 'The UKG Pro HCM API exposes Human Capital Management resources (people,
 
     employment, benefits, payroll, talent, recruiting, onboarding) for the
 
-    UKG Pro platform. The API is tenant-hosted: each customer has a unique
-
-    base hostname. Core REST resources are authenticated with HTTP Basic
-
-    Authentication using a web service account; onboarding and recruiting
-
-    resources require a bearer Authorization Token issued by UKG.
-
-
-    This specification documents the high-level surface confirmed from the
-
-    public developer portal. Detailed schemas for tenant-specific resources
-
-    require access to the authenticated developer portal.
-
-    '
+    UKG Pro platform.'
   contact:
     name: UKG Developer Portal
     url: https://developer.ukg.com/hcm
@@ -50,9 +35,7 @@ paths:
       summary: List recruiting candidates
       description: 'Recruiting endpoints require an Authorization Token (bearer) rather
 
-        than Basic Auth.
-
-        '
+        than Basic Auth.'
       operationId: listCandidates
       security:
       - bearerAuth: []
@@ -71,13 +54,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Candidate:
       type: object
@@ -100,6 +76,13 @@ components:
           type: string
         message:
           type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

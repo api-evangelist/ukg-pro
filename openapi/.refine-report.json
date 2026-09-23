@@ -1,11 +1,7 @@
 {
   "provider": "ukg-pro",
   "sources": [
-    "ukg-pro-benefits-api-openapi.yml",
-    "ukg-pro-employment-api-openapi.yml",
-    "ukg-pro-pay-api-openapi.yml",
-    "ukg-pro-people-api-openapi.yml",
-    "ukg-pro-recruiting-api-openapi.yml"
+    "_original/ukg-pro-openapi.yml"
   ],
   "outputs": [
     "ukg-pro-benefits-api-openapi.yml",
@@ -18,12 +14,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "ukg-pro-benefits-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ukg-pro-employment-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ukg-pro-pay-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ukg-pro-people-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ukg-pro-recruiting-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ukg-pro-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "ukg-pro-benefits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ukg-pro-employment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ukg-pro-pay-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ukg-pro-people-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ukg-pro-recruiting-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
