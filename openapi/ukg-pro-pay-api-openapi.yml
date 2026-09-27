@@ -53,11 +53,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    EmployeeIdQuery:
-      name: employeeId
-      in: query
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -66,6 +61,11 @@ components:
         type: integer
         minimum: 1
         default: 1
+    EmployeeIdQuery:
+      name: employeeId
+      in: query
+      schema:
+        type: string
   schemas:
     Error:
       type: object
