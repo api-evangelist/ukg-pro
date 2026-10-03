@@ -67,49 +67,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      description: Page number for pagination
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PerPage:
-      name: per_page
-      in: query
-      description: Items per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 50
-    EmployeeId:
-      name: employeeId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    EmployeeCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employee'
-        page:
-          type: integer
-        per_page:
-          type: integer
     Employee:
       type: object
       properties:
@@ -127,19 +85,61 @@ components:
           format: date
         status:
           type: string
+    EmployeeCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        page:
+          type: integer
+        per_page:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
   responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      description: Items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    Page:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     basicAuth:
       type: http
