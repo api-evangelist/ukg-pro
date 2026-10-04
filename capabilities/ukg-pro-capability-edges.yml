@@ -1,0 +1,59 @@
+slug: ukg-pro
+provider: UKG Pro
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Benefits
+  spec_file: ukg-pro-benefits-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.93
+  evidence: '"List benefits elections"; schema "BenefitsElection"'
+  reason: Employee benefits election data from an HCM suite is benefits administration under Compensation
+    & Benefits Management.
+- tag: Recruiting
+  spec_file: ukg-pro-recruiting-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.92
+  evidence: '"List recruiting candidates" at /recruiting/v1/candidates; schema "Candidate"'
+  reason: Candidate data for recruiting is squarely Talent Acquisition Management.
+- tag: People
+  spec_file: ukg-pro-people-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.82
+  evidence: '"List employees" / "Retrieve an employee" at /personnel/v1/employees; schemas "Employee",
+    "EmployeeCollection"'
+  reason: Core employee master records from an HCM platform — employee records within HR Operations Management.
+- tag: Employment
+  spec_file: ukg-pro-employment-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.8
+  evidence: '"List employee changes" at /personnel/v1/employee-changes; schema "EmployeeChange"'
+  reason: Employment change records (personnel transactions) are employee record keeping / HR service
+    delivery within HR Operations.
+- tag: Pay
+  spec_file: ukg-pro-pay-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: '"List pay statements" at /pay/v1/pay-statements; schema "PayStatement"'
+  reason: Pay statement retrieval is payroll administration, placed under HR Operations Management; could
+    alternatively be read as Compensation management, hence moderate confidence.

@@ -170,6 +170,9 @@ apis:
   - type: OpenAPI
     url: openapi/ukg-pro-recruiting-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/ukg-pro-capability-edges.yml
+    name: UKG Pro Business Capability Map
   - type: AgenticAccess
     url: agentic-access/ukg-pro-agentic-access.yml
   - type: DomainSecurity
