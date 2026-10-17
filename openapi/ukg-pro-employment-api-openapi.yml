@@ -69,6 +69,13 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     EmployeeChange:
       type: object
       properties:
@@ -82,13 +89,6 @@ components:
         modifiedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
