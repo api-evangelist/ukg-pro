@@ -27,5 +27,5 @@
     - connectors/applications/ukg-pro
     vendor_link: https://www.ukg.com/solutions/human-capital-management
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
